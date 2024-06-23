@@ -14,12 +14,26 @@ body {
 
 .container {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vw; /* Use viewport width for the container */
+    height: 80vh; /* Use viewport height for the container */
 }
 
-.tree {
-    max-width: 100%;
-    height: auto;
+.background-image {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto%;
+    overflow: hidden;
+}
+
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire area */
     display: block;
 }
 
@@ -31,6 +45,7 @@ body {
     z-index: 2;
     backdrop-filter: blur(10px); /* Add background blur effect */
     text-align: center; /* Center the text */
+    width: 100px; /* Default width for items */
 }
 
 .reading {
@@ -52,4 +67,69 @@ body {
 #item3 {
     top: 50%;
     left: 50%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .background-image {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: auto;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .container {
+        width: 90vw; /* Increase container size for smaller screens */
+        height: 90vh; /* Increase container height for smaller screens */
+    }
+
+    .item {
+        width: 80px; /* Smaller width for items */
+        padding: 8px; /* Smaller padding */
+    }
+
+    #item1 {
+        top: 25%;
+        left: 35%;
+    }
+
+    #item2 {
+        top: 35%;
+        left: 40%;
+    }
+
+    #item3 {
+        top: 45%;
+        left: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 100vw; /* Use full width for smallest screens */
+        height: 100vh; /* Use full height for smallest screens */
+    }
+
+    .item {
+        width: 60px; /* Even smaller width for items */
+        padding: 6px; /* Even smaller padding */
+    }
+
+    #item1 {
+        top: 20%;
+        left: 30%;
+    }
+
+    #item2 {
+        top: 30%;
+        left: 35%;
+    }
+
+    #item3 {
+        top: 40%;
+        left: 40%;
+    }
 }
