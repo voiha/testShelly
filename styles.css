@@ -108,6 +108,16 @@ body {
 }
 
 @media (max-width: 480px) {
+
+    .background-image {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: auto;
+        height: 100%;
+        overflow: hidden;
+    }
+    
     .container {
         width: 100vw; /* Use full width for smallest screens */
         height: 100vh; /* Use full height for smallest screens */
