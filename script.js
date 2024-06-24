@@ -1,39 +1,43 @@
-async function getTemperature() {
+async function getSensorData() {
     try {
-        const response = await fetch(`http://192.168.100.118/rpc/Shelly.GetStatus`);
+        const response = await fetch('http://192.168.100.138/status');
         const data = await response.json();
         console.log('Received data:', data); // Log the fetched data
-        // Extract temperatures for sensors 100 and 101
-        const sensor100Temp = data["temperature:100"] ? data["temperature:100"].tC : null;
-        const sensor101Temp = data["temperature:101"] ? data["temperature:101"].tC : null;
-        return { sensor100Temp, sensor101Temp };
+        
+        // Extract external temperature and humidity readings
+        const extTemperature = data.ext_temperature[0] ? data.ext_temperature[0].tC : null;
+        const extHumidity = data.ext_humidity[0] ? data.ext_humidity[0].hum : null;
+        return { extTemperature, extHumidity };
     } catch (error) {
-        console.error('Error fetching temperature:', error);
-        return { sensor100Temp: null, sensor101Temp: null };
+        console.error('Error fetching sensor data:', error);
+        return { extTemperature: null, extHumidity: null };
     }
 }
 
-async function updateTemperatureReadings() {
-    const { sensor100Temp, sensor101Temp } = await getTemperature();
+async function updateSensorReadings() {
+    const { extTemperature, extHumidity } = await getSensorData();
 
-    document.getElementById('sensor100').innerText = `Sensor 100: ${sensor100Temp !== null ? sensor100Temp + '°C' : 'Error'}`;
-    document.getElementById('sensor101').innerText = `Sensor 101: ${sensor101Temp !== null ? sensor101Temp + '°C' : 'Error'}`;
+    document.getElementById('sensorTemp').innerText = `${extTemperature !== null ? extTemperature + '°C' : 'Error'}`;
+    document.getElementById('sensorHumidity').innerText = `${extHumidity !== null ? extHumidity + '%' : 'Error'}`;
 }
 
-// Update the temperature readings immediately when the page loads
-updateTemperatureReadings();
+// Update the sensor readings immediately when the page loads
+updateSensorReadings();
 
-// Update the temperature readings every 1 seconds
-setInterval(updateTemperatureReadings, 1000);
+// Update the sensor readings every 1 second
+setInterval(updateSensorReadings, 1000);
+
+
 
 function getRandomReading() {
     return (Math.random() * 100).toFixed(2); // Generate a random number between 0 and 100
 }
 
 function updateReadings() {
-    document.getElementById('reading1').innerText = getRandomReading() + ' lx'; // Light reading
-    document.getElementById('reading2').innerText = getRandomReading() + ' ppm'; // CO2 reading
-    document.getElementById('reading3').innerText = getRandomReading() + ' °C'; // Temperature reading
+    document.getElementById('light1').innerText = getRandomReading() + ' lx'; // Light reading
+    document.getElementById('co2-1').innerText = getRandomReading() + ' ppm'; // CO2 reading
+    //document.getElementById('ext_temperature1').innerText = getRandomReading() + ' °C'; // Temperature reading
+    //document.getElementById('ext_humidity1').innerText = getRandomReading() + ' %'; // Humidity reading
 }
 
 // Update readings every 5 seconds
