@@ -1,6 +1,6 @@
 async function getSensorData() {
     try {
-        const response = await fetch('http://192.168.100.138/status');
+        const response = await fetch('http://192.168.100.138:80/status');
         const data = await response.json();
         console.log('Received data:', data); // Log the fetched data
         
