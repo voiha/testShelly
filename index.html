@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Мониторинг</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.9.55/css/materialdesign.min.css" integrity="sha512-vIgFb4o1CL8iMGoIF7cYiEVFrel13k/BkTGvs0hGfVnlbV6XjAA0M0oEHdWqGdAVRTDID3vIZPOHmKdrMAUChA==" crossorigin="anonymous">
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/font-awesome/all.css">
         <link rel="stylesheet" href="css/style.css">
-        <title>Мониторинг</title>
     </head>
-
-    <header>
-    </header>
-
     <body>
+        <header></header>
         <main>
             <div class="background"></div>
             <div class="wrapper">
@@ -29,7 +27,7 @@
                                         <div class="card__inner">
                                             <i class="fa-solid fa-temperature-three-quarters"></i>
                                             <p class="card__name">Температура</p>
-                                            <p class="card__stat" id="sensorTemp"></p>
+                                            <p class="card__stat" id="sensorTemp">18 °C</p>
                                         </div>
                                     </div>
                                 </div>
@@ -60,13 +58,22 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="cards__item">
+                                    <div class="card">
+                                        <div class="card__inner">
+                                            <i class="fa-solid fa-tachometer-alt"></i>
+                                            <p class="card__name">VPD</p>
+                                            <p class="card__stat" id="sensorVPD">0 kPa</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
         </main>
-        <script src="js/jquery-3.7.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/index.js"></script>
     </body>
 </html>

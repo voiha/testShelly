@@ -72,20 +72,36 @@ async function getShellyData() {
         const temperature = data.ext_temperature["0"].tC; // Temperature in Celsius
         const humidity = data.ext_humidity["0"].hum; // Humidity in percentage
 
-        updateReadings(temperature, humidity);
+        // Calculate SVP and VPD
+        const svp = calculateSVP(temperature);
+        const vpd = calculateVPD(svp, humidity);
+
+        updateReadings(temperature, humidity, vpd);
     } catch (error) {
         console.error('Error fetching data from Shelly:', error);
     }
 }
 
-function updateReadings(temperature, humidity) {
+function calculateSVP(temperature) {
+    const exponent = (temperature / (temperature + 238.3)) * 17.2694;
+    const svp = (610.78 * Math.pow(2.71828, exponent)) / 1000; // SVP in kPa
+    return svp;
+}
+
+function calculateVPD(svp, humidity) {
+    const vpd = svp * (1 - humidity / 100); // VPD in kPa
+    return vpd.toFixed(2);
+}
+
+function updateReadings(temperature, humidity, vpd) {
     document.getElementById('sensorTemp').innerText = temperature + ' °C'; // Temperature reading
     document.getElementById('sensorHumidity').innerText = humidity + ' %'; // Humidity reading
+    document.getElementById('sensorVPD').innerText = vpd + ' kPa'; // VPD reading
     // Update other readings if needed
 }
 
-// Fetch and update readings every 5 seconds
-setInterval(getShellyData, 5000);
+// Fetch and update readings every 2 seconds
+setInterval(getShellyData, 2000);
 
 // Initial fetch
 getShellyData();
