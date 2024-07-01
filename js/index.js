@@ -9,7 +9,7 @@
 async function getShellyData() {
     try {
         const proxyUrl = 'http://localhost:8080/';
-        const targetUrl = 'http://192.168.100.138/status';
+        const targetUrl = 'http://192.168.100.138:80/status';
         const response = await fetch(proxyUrl + targetUrl);
         if (!response.ok) {
             throw new Error('Network response was not ok');

@@ -84,6 +84,7 @@ h1 {
     --c2: #a6c1ee; */
     --c1: #feffde;
     --c2: #e2ecfd;
+    
 
     &:hover {
         box-shadow: rgba(255, 255, 255, 0.4) 0px 10px 28px;
