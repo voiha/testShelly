@@ -84,8 +84,8 @@ function updateReadings(temperature, humidity) {
     // Update other readings if needed
 }
 
-// Fetch and update readings every 2 seconds
-setInterval(getShellyData, 2000);
+// Fetch and update readings every 5 seconds
+setInterval(getShellyData, 5000);
 
 // Initial fetch
 getShellyData();
