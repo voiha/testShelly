@@ -13,9 +13,13 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+
         <header></header>
         <main>
-            <div class="background"></div>
+            <!-- <div class="background"></div> -->
             <div class="wrapper">
                 <section class="section-cards">
                     <div class="shell">
@@ -68,8 +72,19 @@
                                     </div>
                                 </div>
                                 <div class="cards__item">
-                                    <button class="buttonsShelly" id="toggleOn" onclick="toggleShelly('on')">Включи Устройство</button>
-                                    <button class="buttonsShelly" id="toggleOff" onclick="toggleShelly('off')">Изключи Устройство</button>
+                                    <button state="on" class="buttonsShelly js-shelly-button">Включи Устройство</button>
+                                    <button state="off" class="buttonsShelly js-shelly-button">Изключи Устройство</button>
+                                </div>
+
+                                <div class="cards__item">
+                                    <div class="card js-card">
+                                        <a href="detailed-page-rgb.html" class="card__link"></a>
+                                        <div class="card__inner">
+                                            <i class="fa-regular fa-lightbulb"></i>
+                                            <p class="card__name">RGB</p>
+                                            <p class="card__stat" id="sensorVPD">0 kPa</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
